@@ -176,6 +176,33 @@ A clean embedded architecture makes the core portable, testable, and maintainabl
 
 ---
 
+## Databases
+
+Databases are an implementation detail — keep business rules independent of how data is stored.
+
+- **Databases are details, not domain rules.** The shape of domain data (entities, value objects, invariants) is architecturally significant; the storage technology (files, SQL, NoSQL, or memory) is replaceable.
+- **Hide persistence behind ports/adapters.** Define repository/DAO interfaces in the core (use cases/domain) and implement adapters that interact with a specific persistence mechanism.
+- **Use in-memory/fake adapters for tests.** Fast, deterministic unit tests should use an in-memory or fake adapter that implements the same interface as the real adapter.
+- **Keep mapping explicit.** Translate between domain models and persistence schemas with dedicated mappers or translators, not inside business logic.
+- **Let adapters handle operational concerns.** Transactions, batching, indexing, and performance tuning belong in adapter layers — use cases should express business intent only.
+
+**Common patterns & trade-offs**
+
+- **File system:** treat files as a storage adapter behind a small storage interface (useful for simple apps or special persistence needs).
+- **RDBMS / NoSQL:** model domain semantics first, then map to the DB design that fits query patterns, consistency, and relationships.
+- **In-memory:** great for tests and prototypes; avoid leaking in-memory assumptions into production code.
+
+**Practical recommendations**
+
+- Define small, explicit repository interfaces in the core/domain layer.
+- Implement persistence adapters in outer layers; keep them replaceable and well-tested.
+- Provide in-memory or fake adapters for unit tests and focused integration tests for real adapters.
+- Document operational constraints (transactions, indexes, quotas) in the adapter layer, not in use-case logic.
+
+> The data model is significant; the database is a detail.
+
+---
+
 ## References
 
 Martin, R. C. (2017). Clean architecture: A craftsman's guide to software structure and design.
