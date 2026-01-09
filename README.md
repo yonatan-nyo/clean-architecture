@@ -226,6 +226,13 @@ Keep the framework behind an architectural boundary if at all possible, for as l
 - **Risks**: overly liberal use of `public` breaks encapsulation and enables cross-boundary violations (e.g., controllers accessing repositories directly), creating a "relaxed layered" architecture that undermines intended rules.
 - minimize public surface area, enforce boundaries with **interfaces**, tests, and static analysis (or compiler checks), and prefer component-focused organization when you want clearer ownership and easier evolution toward services.
 
+## Takeaways
+
+- **Prioritize maintainability, testability, and flexibility over initial convenience.** Favor designs that are easier to change and verify.
+- **Keep business rules isolated from implementation details (UI, DB, frameworks).** Treat databases, GUIs, and frameworks as replaceable details behind clear interfaces.
+- **Apply SOLID and modularization incrementally.** Avoid premature modularization — introduce abstractions when they solve real problems (but dont ignore them, this will result in a tangled codebase, especially if you are working in a team).
+- **Enforce boundaries with tests, reviews, and automation.** Use unit tests, contract tests, CI checks, and static analysis to prevent boundary erosion.
+
 ---
 
 ## References
