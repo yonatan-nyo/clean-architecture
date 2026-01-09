@@ -228,7 +228,7 @@ Keep the framework behind an architectural boundary if at all possible, for as l
 
 ## Takeaways
 
-- **Prioritize maintainability, testability, and flexibility over initial convenience.** Favor designs that are easier to change and verify.
+- **Prioritize maintainability, testability, and flexibility over initial convenience.** Favor designs that are easier to change and verify (remember to have seperation of concern (ACTORS/groups, e.g. finance vs operations)).
 - **Keep business rules isolated from implementation details (UI, DB, frameworks).** Treat databases, GUIs, and frameworks as replaceable details behind clear interfaces.
 - **Apply SOLID and modularization incrementally.** Avoid premature modularization — introduce abstractions when they solve real problems (but dont ignore them, this will result in a tangled codebase, especially if you are working in a team).
 - **Enforce boundaries with tests, reviews, and automation.** Use unit tests, contract tests, CI checks, and static analysis to prevent boundary erosion.
