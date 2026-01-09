@@ -201,8 +201,35 @@ Databases are an implementation detail — keep business rules independent of ho
 
 > The data model is significant; the database is a detail.
 
+## GUI
+
+GUI is a detail - keep business rules independent of how data is presented.
+
+U don't know what marketing will want in the future, so dont couple your business rules to the GUI. decouple it!
+Keep GUI as stupid as possible, and put all the logic in the presenter (or view model).
+
+## Frameworks
+
+Framework is a detail - keep business rules independent of frameworks and tools.
+
+Business rules should be ignorant of frameworks. Frameworks come and go, but business rules endure. Treat frameworks as tools to implement details, not as drivers of core logic.
+
+Keep the framework behind an architectural boundary if at all possible, for as long as possible. Perhaps you can find a way to get the milk without buying the cow.
+
+## Architectures & packaging
+
+- **Four common styles**:
+  - **Package by Layer** (horizontal layers: web, services, persistence) is easy to start but hides domain intent and scales poorly;
+  - **Package by Feature** (vertical slices) improves discoverability;
+  - **Ports & Adapters (hexagonal)** separates an inside (domain) from an outside (infrastructure) with dependencies pointing inward;
+  - **Package by Component** groups business logic and persistence into a single component (a deployable unit) to keep related code together.
+- **Risks**: overly liberal use of `public` breaks encapsulation and enables cross-boundary violations (e.g., controllers accessing repositories directly), creating a "relaxed layered" architecture that undermines intended rules.
+- minimize public surface area, enforce boundaries with **interfaces**, tests, and static analysis (or compiler checks), and prefer component-focused organization when you want clearer ownership and easier evolution toward services.
+
 ---
 
 ## References
 
 Martin, R. C. (2017). Clean architecture: A craftsman's guide to software structure and design.
+
+---
